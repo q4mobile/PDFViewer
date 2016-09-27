@@ -46,7 +46,7 @@
 
     if (url != nil && url.length > 0) {
         
-        NSURL* absoluteURL = [[NSURL URLWithString:url relativeToURL:[self.webView.request URL]] absoluteURL];
+        NSURL* absoluteURL = [[NSURL URLWithString:url relativeToURL:[((UIWebView*)self.webView).request URL]] absoluteURL];
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:absoluteURL.path]) {
             NSLog(@"[pdfviewer] path: %@", absoluteURL.path);
@@ -75,7 +75,7 @@
 
 - (void)onClose
 {
-	[self.webView stringByEvaluatingJavaScriptFromString:@"PDFViewer.onClose();"];
+	[((UIWebView*)self.webView) stringByEvaluatingJavaScriptFromString:@"PDFViewer.onClose();"];
 }
 
 #if !__has_feature(objc_arc)
